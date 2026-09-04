@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RazorPAY - Smart Payment Retry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>RazorPAY</h1>
+            <p>Smart Global-Retry & 3DS-Fallback Agent</p>
+        </header>
+
+        <main>
+
+            <section class="card">
+                <h2>Payment Analysis</h2>
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="amount" value="100">
+                </div>
+
+                <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" id="country" value="US">
+                </div>
+
+                <div class="form-group">
+                    <label>Failure Reason</label>
+                    <select id="failure_reason">
+                        <option value="TECHNICAL_ERROR">Technical Error</option>
+                        <option value="3DS_REQUIRED">3DS Required</option>
+                        <option value="INSUFFICIENT_FUNDS">Insufficient Funds</option>
+                        <option value="CARD_DECLINED">Card Declined</option>
+                        <option value="CURRENCY_NOT_SUPPORTED">Currency Not Supported</option>
+                        <option value="NONE">None / Unknown</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="three_ds_supported" checked>
+                    <label for="three_ds_supported">3DS Supported</label>
+                </div>
+
+                <button onclick="analyzePayment()">
+                    Analyze Payment
+                </button>
+
+            </section>
+
+
+            <section class="card result-card">
+
+                <h2>Agent Decision</h2>
+
+                <div id="loading" class="hidden">
+                    Analyzing payment...
+                </div>
+
+                <div id="result" class="hidden">
+
+                    <div class="result-item">
+                        <span>Status</span>
+                        <strong id="status">-</strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Strategy</span>
+                        <strong id="strategy">-</strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Retry After</span>
+                        <strong id="retry">-</strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Maximum Retries</span>
+                        <strong id="maxRetries">-</strong>
+                    </div>
+
+                    <div class="message">
+                        <h3>Recommendation</h3>
+                        <p id="message">-</p>
+                    </div>
+
+                </div>
+
+                <div id="error" class="error hidden"></div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <p>AI-powered payment failure recovery system</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
